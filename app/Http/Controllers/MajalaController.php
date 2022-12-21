@@ -172,4 +172,6 @@ class MajalaController extends Controller
 
         // return new DepartemenResource(true, 'Data Departemen Berhasil di Delete!', null);
     }
+
+
 }

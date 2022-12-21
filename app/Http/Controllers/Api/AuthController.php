@@ -256,7 +256,7 @@ class AuthController extends Controller
 
         $user->username = $updateData['username'];
         $user->email = $updateData['email'];
-        $user->password = $updateData['password'];
+        $user->password = Hash::make($updateData['password']);
 
         if($user->save()){
             return response([
