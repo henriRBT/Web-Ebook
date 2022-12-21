@@ -150,20 +150,23 @@ import axios from "axios";
 export default {
   setup() {
     //state token
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     //inisialisasi vue router on Composition API
     const router = useRouter();
 
     //state user
-    const user = ref("");
+    const user = ref('');
 
-    //mounted properti
-    if(!token) {
-          return router.push({
-            name: 'login'
-          })
-    }
+    onMounted(() =>{
+        //check Token exist
+        if(!token) {
+            return router.push({
+                name: 'login'
+            })
+        }
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    });
 
     //method logout
     function logout() {
@@ -174,7 +177,7 @@ export default {
         .then((response) => {
           if (response.data.success) {
             //remove localStorage
-            localStorage.removeItem("token");
+            localStorage.removeItem('token');
 
             //redirect ke halaman login
             return router.push({
@@ -186,6 +189,8 @@ export default {
           console.log(error.response.data);
         });
     }
+ 
+   
 
     return {
       token, // <-- state token

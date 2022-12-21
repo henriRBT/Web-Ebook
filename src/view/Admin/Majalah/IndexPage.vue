@@ -50,7 +50,7 @@
                       >EDIT</router-link
                     >
                     <button
-                      @click.prevent="majalahDelete(comic.id)"
+                      @click.prevent="majalahDelete(majalah.id)"
                       class="btn btn-sm btn-danger ml-1"
                     >
                       DELETE
@@ -102,6 +102,7 @@ export default {
           console.log(error.response.data);
         });
     }
+
     //return
     return {
       majalahs,

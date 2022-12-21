@@ -55,14 +55,14 @@
 
 
 <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
 export default {
   setup() {
     //state token
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     //inisialisasi vue router on Composition API
     const router = useRouter();
@@ -70,34 +70,36 @@ export default {
     //state user
     const user = ref('');
 
-    //mounted properti
+    onMounted(() =>{
+        //check Token exist
+        if(!token) {
+            return router.push({
+                name: 'login'
+            })
+        }
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    });
    
     //method logout
     function logout() {
       //logout
-
-      if(!token) {
-            return router.push({
-              name: 'beranda'
-            })
-      } else {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
         axios.get("http://127.0.0.1:8000/api/logout")
           .then((response) => {
             if (response.data.success) {
               //remove localStorage
-              localStorage.removeItem("token");
+              localStorage.removeItem('token');
 
               //redirect ke halaman login
               return router.push({
-                name: "beranda",
+                name: "login",
               });
             }
           })
           .catch((error) => {
             console.log(error.response.data);
           });
-        }
+        
     }
 
     return {

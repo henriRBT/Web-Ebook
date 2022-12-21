@@ -37,6 +37,9 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-success btn-lg mb-1" style="margin-top:25px;">REGISTER</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">have an account? 
+                                <router-link :to="{ name: 'login' }"  class="link-danger">Login</router-link> 
+                                </p>
                             </form>
                         </div>
                     </div>

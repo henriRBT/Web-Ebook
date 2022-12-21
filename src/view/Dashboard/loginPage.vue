@@ -64,9 +64,14 @@
               >
                 Login
               </button>
-              <!-- <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                                class="link-danger">Register</a></p> -->
+              <!-- <label class="form-label" for="form3Example4">Don't Have account?</label>
+              <router-link :to="{ name: 'register' }" >Register</router-link> -->
+                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+                <router-link :to="{ name: 'register' }"  class="link-danger">Register</router-link> 
+                </p>
             </div>
+
+           
           </form>
         </div>
       </div>
@@ -108,7 +113,7 @@ export default {
 
     //state loginFailed
     const loginFailed = ref(null);
-
+    
     //method login
     function login() {
       //define variable
@@ -128,7 +133,7 @@ export default {
             if (email == "admin@gmail.com" && password == "admin123") {
               //redirect ke halaman dashboard novelAdmin.index
               return router.push({
-                name: "berandaAdmin",
+                name: "novelAdmin.index",
               });
             }
             //redirect ke halaman dashboard

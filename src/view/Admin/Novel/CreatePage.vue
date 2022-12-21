@@ -141,7 +141,7 @@ export default {
         })
         .catch((error) => {
           //assign state validation with error
-          console.log(error);
+          validation.value = error.response.data;
         });
     }
     function inputFile(event) {
